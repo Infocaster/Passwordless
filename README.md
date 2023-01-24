@@ -5,8 +5,8 @@
 <h1 align="center">
 Passwordless backoffice
 
-[![Downloads](https://img.shields.io/nuget/dt/Infocaster.Umbraco.Passwordless?color=ffc800)](https://www.nuget.org/packages/UrlTracker/)
-[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Infocaster.Umbraco.Passwordless?color=ff0069)](https://www.nuget.org/packages/UrlTracker/)
+[![Downloads](https://img.shields.io/nuget/dt/Infocaster.Umbraco.Passwordless?color=ffc800)](https://www.nuget.org/packages/Infocaster.Umbraco.Passwordless/)
+[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Infocaster.Umbraco.Passwordless?color=ff0069)](https://www.nuget.org/packages/Infocaster.Umbraco.Passwordless/)
 ![GitHub](https://img.shields.io/github/license/Infocaster/Passwordless?color=ffc800)
 
 </h1>

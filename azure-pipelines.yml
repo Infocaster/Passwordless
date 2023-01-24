@@ -96,8 +96,8 @@ stages:
   dependsOn: build
   condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
   variables:
-    packageGlob: '$(Pipeline.Workspace)/**/UrlTracker*.nupkg'
-    symbolsGlob: '$(Pipeline.Workspace)/**/UrlTracker*.snupkg'
+    packageGlob: '$(Pipeline.Workspace)/**/Infocaster.Umbraco.Passwordless*.nupkg'
+    symbolsGlob: '$(Pipeline.Workspace)/**/Infocaster.Umbraco.Passwordless*.snupkg'
   jobs:
   - job: releaseArtifact
     displayName: Push to artifacts
