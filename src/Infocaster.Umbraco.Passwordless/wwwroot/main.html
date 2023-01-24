@@ -1,0 +1,4 @@
+﻿<div ng-controller="passwordless.main as vm">
+    <pwl-login ng-if="!vm.getIsRegister()"></pwl-login>
+    <pwl-register ng-if="vm.getIsRegister()"></pwl-register>
+</div>

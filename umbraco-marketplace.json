@@ -1,0 +1,28 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "Passwordless Backoffice",
+  "Category": "Editor Tools",
+  "PackageType": "Package",
+  "Tags": [
+    "passwordless",
+    "fido",
+    "backoffice",
+    "login",
+    "fingerprint",
+    "face-id"
+  ],
+  "LicenseTypes": [ "Free" ],
+  "AuthorDetails": {
+    "Url": "https://infocaster.net",
+    "ImageUrl": "https://github.com/InfocasterTechniek.png",
+    "Description": "Let's make the internet brighter",
+    "Contributors": [
+      {
+        "Name": "Dennis Heutinck",
+        "Url": "https://dev.to/d_inventor"
+      }
+    ]
+  },
+  "IssueTrackerUrl": "https://github.com/Infocaster/Passwordless/issues",
+  "DiscussionForumUrl": "https://github.com/Infocaster/Passwordless/discussions"
+}
