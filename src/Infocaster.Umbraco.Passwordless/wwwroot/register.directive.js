@@ -18,10 +18,7 @@
 
             let response = await $http.get('/umbraco/backoffice/api/passwordlessapi/register');
             await p.register(response.data);
-
-            let token = await p.signin({});
-            const externalLinkCallback = '/umbraco/externallinklogincallback';
-            $window.location.href = `/umbraco-pwl-login?token=${encodeURIComponent(token)}&returnUrl=${encodeURIComponent(externalLinkCallback)}`;
+            await $http.post('/umbraco/backoffice/api/passwordlessapi/finishregister');
         }
 
         function getButtonState() {

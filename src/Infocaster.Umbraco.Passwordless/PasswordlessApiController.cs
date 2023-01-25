@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Infocaster.Umbraco.Passwordless.Authentication;
 using Infocaster.Umbraco.Passwordless.Client;
 using Infocaster.Umbraco.Passwordless.Client.Models;
 using Infocaster.Umbraco.Passwordless.Configuration;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Umbraco.Cms.Core.Security;
@@ -19,14 +21,17 @@ public class PasswordlessApiController
     private readonly IPasswordlessEndpoints _passwordlessEndpoints;
     private readonly IBackOfficeSecurityAccessor _backOfficeSecurityAccessor;
     private readonly IOptionsMonitor<PasswordlessOptions> _options;
+    private readonly IBackOfficeUserManager _backOfficeUserManager;
 
     public PasswordlessApiController(IPasswordlessEndpoints passwordlessEndpoints,
                                      IBackOfficeSecurityAccessor backOfficeSecurityAccessor,
-                                     IOptionsMonitor<PasswordlessOptions> options)
+                                     IOptionsMonitor<PasswordlessOptions> options,
+                                     IBackOfficeUserManager backOfficeUserManager)
     {
         _passwordlessEndpoints = passwordlessEndpoints;
         _backOfficeSecurityAccessor = backOfficeSecurityAccessor;
         _options = options;
+        _backOfficeUserManager = backOfficeUserManager;
     }
 
     [HttpGet]
@@ -56,5 +61,18 @@ public class PasswordlessApiController
         });
 
         return Ok(response.Value);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> FinishRegister()
+    {
+        var user = _backOfficeSecurityAccessor.BackOfficeSecurity?.CurrentUser;
+        if (user is null) throw new InvalidOperationException("Cannot register when no user is logged in");
+
+        var backofficeUserIdentity = await _backOfficeUserManager.GetUserAsync(User);
+
+        await _backOfficeUserManager.AddLoginAsync(backofficeUserIdentity, new UserLoginInfo("Umbraco." + PasswordlessLoginProviderOptions.SchemeName,user.Id.ToString() , user.Name));
+
+        return Ok();
     }
 }
